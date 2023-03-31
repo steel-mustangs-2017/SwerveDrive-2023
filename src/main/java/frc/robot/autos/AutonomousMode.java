@@ -34,6 +34,7 @@ public class AutonomousMode extends SequentialCommandGroup {
 				new PIDController(Constants.AutoConstants.kPYController, 0, 0), thetaController,
 				s_Swerve::setModuleStates, s_Swerve);
 
+		//TODO is just adding commands enough to execute them?
 		addCommands(				
 				new InstantCommand(() -> w_Wrist.wristDown()).withTimeout(5),
 				new InstantCommand(() -> i_Intake.reverseIntake()).withTimeout(2),

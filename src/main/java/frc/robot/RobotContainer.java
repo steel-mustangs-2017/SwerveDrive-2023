@@ -97,15 +97,7 @@ public class RobotContainer {
       //  h_Elevator.setDefaultCommand(elevatorCommand);
     }
 
-    /**
-     * Use this to pass the autonomous command to the main {@link Robot} class.
-     *
-     * @return the command to run in autonomous
-     */
- public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
+    public Command getAutonomousCommand() {
         return new AutonomousMode(s_Swerve, i_Intake , w_Wrist);
-
-      }
-
+    }
 }
