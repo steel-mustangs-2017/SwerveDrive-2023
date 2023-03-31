@@ -64,14 +64,13 @@ public class Red_Balance extends SequentialCommandGroup {
                 s_Swerve::setModuleStates,
                 s_Swerve);
 
-    
-
         addCommands(
-            new InstantCommand(() -> w_Wrist.wristDown()).andThen(() -> w_Wrist.wristUp(-180)).andThen(() -> i_Intake.reverseIntake()).withTimeout(3).andThen(()-> i_Intake.stopIntake()),
-            new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())) ,
-           swerveControllerCommand 
-
-            
+            new InstantCommand(() -> w_Wrist.wristDown()).withTimeout(5),
+            new InstantCommand(() -> i_Intake.reverseIntake()).withTimeout(2),
+            new InstantCommand(() -> i_Intake.stopIntake()),
+            new InstantCommand(() -> w_Wrist.wristUp(-180)).withTimeout(5),            
+            new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),
+            swerveControllerCommand
         );
     }
 
