@@ -1,0 +1,9 @@
+{
+  "lengthUnit": "Foot",
+  "exportUnit": "Same as Project",
+  "maxVelocity": 16.0,
+  "maxAcceleration": 4.0,
+  "trackWidth": 21.73,
+  "gameName": "Rapid React",
+  "outputDir": "../../../../../Downloads/test-2022-2946-master/test-2022-2946-master/Robot Paths"
+}
