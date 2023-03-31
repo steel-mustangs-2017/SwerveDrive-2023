@@ -104,7 +104,7 @@ public class RobotContainer {
      */
  public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new Red_Balance(s_Swerve, i_Intake , w_Wrist);
+        return new AutonomousMode(s_Swerve, i_Intake , w_Wrist);
 
       }
 
