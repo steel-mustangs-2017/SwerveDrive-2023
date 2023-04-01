@@ -4,15 +4,10 @@
 
 package frc.robot;
 
-import org.photonvision.PhotonCamera;
-
-import com.ctre.phoenix.motorcontrol.can.TalonFX;
-
-import edu.wpi.first.math.controller.PIDController;
-import edu.wpi.first.math.util.Units;
 import edu.wpi.first.net.PortForwarder;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.cameraserver.CameraServer;
@@ -25,26 +20,32 @@ import edu.wpi.first.cameraserver.CameraServer;
  */
 public class Robot extends TimedRobot {
  
-   
   public static CTREConfigs ctreConfigs;
-
   private Command m_autonomousCommand;
-
   private RobotContainer m_robotContainer;
+  private final SendableChooser<String> autonomousSelector = new SendableChooser<>();
 
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-  @Override
-  public void robotInit() {
-    ctreConfigs = new CTREConfigs();
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
-    m_robotContainer = new RobotContainer();
-    PortForwarder.add(5800, "10.29.45.10", 5800);
-    CameraServer.startAutomaticCapture();
-  }
+	@Override
+	public void robotInit() {
+		autonomousSelector.setDefaultOption("Default autonomous", "Default");
+		autonomousSelector.addOption("Deliver & Cross Line", "DeliverAndCrossLine");
+		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceSimple");
+		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceAdvanced");
+		autonomousSelector.addOption("Only Deliver", "OnlyDeliver");
+		SmartDashboard.putData(autonomousSelector);
+		
+		ctreConfigs = new CTREConfigs();
+		// Instantiate our RobotContainer. This will perform all our button bindings,
+		// and put our
+		// autonomous chooser on the dashboard.
+		m_robotContainer = new RobotContainer();
+		PortForwarder.add(5800, "10.29.45.10", 5800);
+		CameraServer.startAutomaticCapture();
+	}
 
   /**
    * This function is called every robot packet, no matter the mode. Use this for items like
@@ -72,11 +73,22 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
 	@Override
 	public void autonomousInit() {
-		m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-
+		String autonomousOption = this.autonomousSelector.getSelected();
+		if(autonomousOption.equalsIgnoreCase("Default")) {
+			//TODO add actual default, best suited for Houston, TX event
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandDefault();
+		} else if(autonomousOption.equalsIgnoreCase("DeliverAndCrossLine")) {
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndCrossLine();
+		} else if(autonomousOption.equalsIgnoreCase("DeliverAndBalanceSimple")) {
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceSimple();
+		} else if(autonomousOption.equalsIgnoreCase("DeliverAndBalanceAdvanced")) {
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceAdvanced();
+		} else if(autonomousOption.equalsIgnoreCase("OnlyDeliver")) {
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandOnlyDeliver();;
+		}
+		
 		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
-			
 			m_autonomousCommand.schedule();
 			//TODO what is w_Wrist.auto = true needed?
 			m_robotContainer.w_Wrist.auto = true;
@@ -87,31 +99,31 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousPeriodic() {}
 
-  @Override
-  public void teleopInit() {
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-      m_robotContainer.w_Wrist.auto = false;
-    }
-  }
+	@Override
+	public void teleopInit() {
+		// This makes sure that the autonomous stops running when teleop starts running. 
+		// If you want the autonomous to continue until interrupted by another command, remove this line or comment it out.
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+			m_robotContainer.w_Wrist.auto = false;
+		}
+	}
 
-  /** This function is called periodically during operator control. */
-  @Override
-  public void teleopPeriodic() {
-    
-  }
+	/** This function is called periodically during operator control. */
+	@Override
+	public void teleopPeriodic() {
 
-  @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
-    CommandScheduler.getInstance().cancelAll();
-  }
+	}
 
-  /** This function is called periodically during test mode. */
-  @Override
-  public void testPeriodic() {}
+	@Override
+	public void testInit() {
+		// Cancels all running commands at the start of test mode.
+		CommandScheduler.getInstance().cancelAll();
+	}
+
+	/** This function is called periodically during test mode. */
+	@Override
+	public void testPeriodic() {
+		
+	}
 }

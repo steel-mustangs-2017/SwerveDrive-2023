@@ -97,7 +97,27 @@ public class RobotContainer {
       //  h_Elevator.setDefaultCommand(elevatorCommand);
     }
 
-    public Command getAutonomousCommand() {
+    public Command getAutonomousCommandDefault() {
         return new AutonomousMode(s_Swerve, i_Intake , w_Wrist);
+    }
+    
+    public Command getAutonomousCommandDeliverAndCrossLine() {
+        //TODO implement AutonomousModeDeliverAndCrossLine
+    	return null;
+    }
+    
+    public Command getAutonomousCommandDeliverAndBalanceSimple() {
+        //TODO implement AutonomousModeDeliverAndBalanceSimple
+    	return null;
+    }
+    
+    public Command getAutonomousCommandDeliverAndBalanceAdvanced() {
+        //TODO implement AutonomousModeDeliverAndBalanceAdvanced
+    	return null;
+    }
+    
+    public Command getAutonomousCommandOnlyDeliver() {
+        //TODO implement AutonomousModeOnlyDeliver
+    	return null;
     }
 }

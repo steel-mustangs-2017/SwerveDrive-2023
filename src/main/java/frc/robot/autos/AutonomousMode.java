@@ -36,10 +36,10 @@ public class AutonomousMode extends SequentialCommandGroup {
 
 		//TODO is just adding commands enough to execute them?
 		addCommands(				
-				new InstantCommand(() -> w_Wrist.wristDown()).withTimeout(5),
+				new InstantCommand(() -> w_Wrist.wristDown()).withTimeout(3),
 				new InstantCommand(() -> i_Intake.reverseIntake()).withTimeout(2),
 				new InstantCommand(() -> i_Intake.stopIntake()),
-				new InstantCommand(() -> w_Wrist.wristTop()).withTimeout(5),
+				new InstantCommand(() -> w_Wrist.wristTop()).withTimeout(3),
 				new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),
 				swerveControllerCommand);
 	}
