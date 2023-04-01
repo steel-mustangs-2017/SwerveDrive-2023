@@ -39,7 +39,7 @@ public class AutonomousMode extends SequentialCommandGroup {
 				new InstantCommand(() -> w_Wrist.wristDown()).withTimeout(5),
 				new InstantCommand(() -> i_Intake.reverseIntake()).withTimeout(2),
 				new InstantCommand(() -> i_Intake.stopIntake()),
-				new InstantCommand(() -> w_Wrist.wristUp(-180)).withTimeout(5),
+				new InstantCommand(() -> w_Wrist.wristTop()).withTimeout(5),
 				new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),
 				swerveControllerCommand);
 	}
