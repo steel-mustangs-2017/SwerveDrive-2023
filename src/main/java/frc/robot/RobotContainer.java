@@ -3,7 +3,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.I2C.Port;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -41,7 +40,7 @@ public class RobotContainer {
     //private final JoystickButton elevatorLvl3 = new JoystickButton(manipulator, XboxController.Button.kX.value);
     private final Swerve s_Swerve = new Swerve();
     private final Intake i_Intake = new Intake();
-  //  private final Elevator e_Elevator = new Elevator();
+    //  private final Elevator e_Elevator = new Elevator();
     public final Wrist w_Wrist = new Wrist();
    // private final HorizontalElevator h_Elevator = new HorizontalElevator();
     /*Manipulator Controls */
@@ -49,9 +48,9 @@ public class RobotContainer {
    
 
     /*robot subsystems */
-   // private final ElevatorCommand elevatorCommand = new ElevatorCommand(e_Elevator, h_Elevator, manipulator, manipulator);
+    // private final ElevatorCommand elevatorCommand = new ElevatorCommand(e_Elevator, h_Elevator, manipulator, manipulator);
     private final WristCommand wristCommand = new WristCommand(w_Wrist, manipulator);
-  //  private final WristCommandAuto wristCommandAuto = new WristCommandAuto(w_Wrist, manipulator);
+    // private final WristCommandAuto wristCommandAuto = new WristCommandAuto(w_Wrist, manipulator);
     //private final HorizantalElevatorCommand horizantalElevatorCommand = new HorizantalElevatorCommand(h_Elevator, manipulator);
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
     public RobotContainer() {
@@ -97,15 +96,35 @@ public class RobotContainer {
       //  h_Elevator.setDefaultCommand(elevatorCommand);
     }
 
-    /**
-     * Use this to pass the autonomous command to the main {@link Robot} class.
-     *
-     * @return the command to run in autonomous
-     */
- public Command getAutonomousCommand() {
-        // An ExampleCommand will run in autonomous
-        return new Red_Balance(s_Swerve, i_Intake , w_Wrist);
-
-      }
-
+    public Command getAutonomousCommandDefault() {
+        return new AutonomousMode(s_Swerve, i_Intake , w_Wrist);
+    }
+    
+    public Command getAutonomousCommandDeliverAndCrossLine() {
+        //TODO implement AutonomousModeDeliverAndCrossLine
+    	return null;
+    }
+    
+    public Command getAutonomousCommandDeliverAndBalanceSimple() {
+        //TODO implement AutonomousModeDeliverAndBalanceSimple
+    	return null;
+    }
+    
+    public Command getAutonomousCommandDeliverAndBalanceAdvanced() {
+        //TODO implement AutonomousModeDeliverAndBalanceAdvanced
+    	return null;
+    }
+    
+    public Command getAutonomousCommandOnlyDeliver() {
+        //TODO implement AutonomousModeOnlyDeliver
+    	return null;
+    }
+    
+    public Command getAutonomousCommandDrive1Meter() {
+    	return new AutonomousModeDrive1Meter(s_Swerve, i_Intake , w_Wrist);
+    }
+    
+    public Command getAutonomousCommandDrive3Meters() {        
+    	return new AutonomousModeDrive3Meters(s_Swerve, i_Intake , w_Wrist);
+    }
 }
