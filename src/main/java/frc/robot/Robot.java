@@ -36,6 +36,8 @@ public class Robot extends TimedRobot {
 		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceSimple");
 		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceAdvanced");
 		autonomousSelector.addOption("Only Deliver", "OnlyDeliver");
+		autonomousSelector.addOption("Drive 1m", "Drive1Meter");
+		autonomousSelector.addOption("Drive 3m", "Drive3Meters");
 		SmartDashboard.putData(autonomousSelector);
 		
 		ctreConfigs = new CTREConfigs();
@@ -85,6 +87,10 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceAdvanced();
 		} else if(autonomousOption.equalsIgnoreCase("OnlyDeliver")) {
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandOnlyDeliver();;
+		} else if(autonomousOption.equalsIgnoreCase("Drive1Meter")) {
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandDrive1Meter();;
+		} else if(autonomousOption.equalsIgnoreCase("Drive3Meters")) {
+			m_autonomousCommand = m_robotContainer.getAutonomousCommandDrive3Meters();;
 		}
 		
 		// schedule the autonomous command (example)
