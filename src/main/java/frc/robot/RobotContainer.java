@@ -101,9 +101,9 @@ public class RobotContainer {
         return new AutonomousMode(s_Swerve, i_Intake , w_Wrist);
     }
     
-    public Command getAutonomousCommandDeliverAndCrossLine() {
+    public Command getAutonomousCommandBalance() {
         //TODO implement AutonomousModeDeliverAndCrossLine
-    	return null;
+    	return new BasicAuto(s_Swerve);
     }
     
     public Command getAutonomousCommandDeliverAndBalanceSimple() {

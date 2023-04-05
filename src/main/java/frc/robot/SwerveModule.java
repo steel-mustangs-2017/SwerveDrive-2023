@@ -113,6 +113,12 @@ public class SwerveModule {
             getAngle()
         ); 
     }
+    public void resetDriveEncoder(){
+        mDriveMotor.setSelectedSensorPosition(0,0,50);
+    }
+    public double getWheelPosition(){
+        return mDriveMotor.getSelectedSensorPosition();
+    }
 
     public SwerveModulePosition getPosition(){
         return new SwerveModulePosition(
