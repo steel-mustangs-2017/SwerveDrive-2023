@@ -24,7 +24,7 @@ public class DriveAmountAndDriveUntilBalanced extends CommandBase {
         this.pitch = pitch;
         this.amount = amount;
         addRequirements(m_Drivetrain);
-        p = 0.05; //RIDE Match 1: 0.04 
+        p = 0.05; //was .05
     }
 
     @Override
@@ -71,6 +71,7 @@ public class DriveAmountAndDriveUntilBalanced extends CommandBase {
     public boolean isDocked() {
      if (m_Drivetrain.getAverageEncoderValue() > amount){
         System.out.println("DRIVE AMOUNT DONE");
+        m_Drivetrain.brakeSwerve();
         return true;
       }
     else{
