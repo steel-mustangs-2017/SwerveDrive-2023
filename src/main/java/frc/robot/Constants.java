@@ -87,9 +87,9 @@ public final class Constants {
 
         /* Swerve Profiling Values */
         /** Meters per Second */
-        public static double maxSpeed = 1; //TODO: This must be tuned to specific robot
+        public static double maxSpeed = 4.5; //TODO: This must be tuned to specific robot
         /** Radians per Second */
-        public static double maxAngularVelocity = .5; //TODO: This must be tuned to specific robot
+        public static double maxAngularVelocity = 10; //TODO: This must be tuned to specific robot
 
         /* Neutral Modes */
         public static final NeutralMode angleNeutralMode = NeutralMode.Coast;
@@ -135,6 +135,16 @@ public final class Constants {
             public static final SwerveModuleConstants constants = 
                 new SwerveModuleConstants(driveMotorID, angleMotorID, canCoderID, angleOffset);
         }
+
+        public double getPitch() {
+            return 0;
+        }
+
+        public void drive(Translation2d times, double d, boolean b, boolean c) {
+        }
+
+        public void setDrivesMode(NeutralMode brake) {
+        }
         
     }
     public static class VisionConstants {
@@ -153,8 +163,9 @@ public final class Constants {
     }
     
     public final class Intake{
-        public static final int intakeLeft = 10;
-        public static final int intakeRight = 11;
+        public static final int MainIntake = 10;
+        //public static final int intakeLeft = 10;
+        //public static final int intakeRight = 11;
     }
     
     public final class Wrist{

@@ -9,7 +9,7 @@ import frc.robot.Constants;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Intake extends SubsystemBase{
+/*public class Intake extends SubsystemBase{
     private final WPI_TalonFX intakeLeft = new WPI_TalonFX(Constants.Intake.intakeLeft);
     private final WPI_TalonFX intakeRight = new WPI_TalonFX(Constants.Intake.intakeRight);
     private final double speed = 0.4;
@@ -43,6 +43,6 @@ public void stopIntake(){
     intakeLeft.set(0);
     intakeRight.set(0);
 }
+*/
 
-
-}
+//}

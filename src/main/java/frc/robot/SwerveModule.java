@@ -11,6 +11,7 @@ import frc.lib.util.SwerveModuleConstants;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 
@@ -113,11 +114,23 @@ public class SwerveModule {
             getAngle()
         ); 
     }
+    public void resetDriveEncoder(){
+        mDriveMotor.setSelectedSensorPosition(0,0,50);
+    }
+    public double getWheelPosition(){
+        return mDriveMotor.getSelectedSensorPosition();
+    }
 
     public SwerveModulePosition getPosition(){
         return new SwerveModulePosition(
             Conversions.falconToMeters(mDriveMotor.getSelectedSensorPosition(), Constants.Swerve.wheelCircumference, Constants.Swerve.driveGearRatio), 
             getAngle()
         );
+    }
+
+    public void setNeutralMode(NeutralMode brake) {
+    }
+
+    public void setDriveMode(NeutralMode idleMode) {
     }
 }
