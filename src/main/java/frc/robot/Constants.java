@@ -142,6 +142,9 @@ public final class Constants {
 
         public void drive(Translation2d times, double d, boolean b, boolean c) {
         }
+
+        public void setDrivesMode(NeutralMode brake) {
+        }
         
     }
     public static class VisionConstants {
@@ -160,8 +163,9 @@ public final class Constants {
     }
     
     public final class Intake{
-        public static final int intakeLeft = 10;
-        public static final int intakeRight = 11;
+        public static final int MainIntake = 10;
+        //public static final int intakeLeft = 10;
+        //public static final int intakeRight = 11;
     }
     
     public final class Wrist{

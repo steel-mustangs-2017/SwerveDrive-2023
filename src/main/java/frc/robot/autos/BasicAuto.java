@@ -20,10 +20,11 @@ import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-
+import frc.robot.commands.DriveTrainCommands.AutoBalanceDrake;
 import frc.robot.commands.DriveTrainCommands.DriveAmount;
 import frc.robot.commands.DriveTrainCommands.DriveAmountAndDriveUntilBalanced;
 import frc.robot.commands.DriveTrainCommands.DriveUntilBalanced;
+import frc.robot.commands.DriveTrainCommands.autoBalanceFortnite;
 //import frc.robot.commands.DrivetrainCommands.StrafeAmount;
 //import frc.robot.commands.IntakeCommands.IntakeCube;
 //import frc.robot.commands.IntakeCommands.IntakeMotorGo;
@@ -66,8 +67,9 @@ public class BasicAuto extends SequentialCommandGroup {
         //new IntakeMotorGo(intake, -0.2).withTimeout(.3),
         //new HomePose(elevator, intake, wrist, arm),
         //new ClimbPoseBack(elevator, intake, wrist, arm),
-        //new DriveAmount(drivetrain,79,-.2, true),//reduced from 89//increased from 81
-        new DriveAmountAndDriveUntilBalanced(s_Swerve, .2,83 )
+        new DriveAmount(s_Swerve,45,.2, false),
+        ///new autoBalanceFortnite(s_Swerve,),
+        new autoBalanceFortnite(s_Swerve, .2,60)
        // new CollectFloorPoseBack(elevator, intake, wrist, arm, leds)
       
        // new Balance(drivetrain)

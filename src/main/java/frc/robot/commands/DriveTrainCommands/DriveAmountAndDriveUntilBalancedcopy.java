@@ -9,7 +9,7 @@ import frc.robot.subsystems.Swerve;
 import frc.robot.Constants;
 
 
-public class DriveAmountAndDriveUntilBalanced extends CommandBase {
+public class DriveAmountAndDriveUntilBalancedcopy extends CommandBase {
 
     double speed;
     double amount;
@@ -18,13 +18,13 @@ public class DriveAmountAndDriveUntilBalanced extends CommandBase {
     double threshhold = 5;
     double p;
 
-    public DriveAmountAndDriveUntilBalanced(Swerve m_Drivetrain, double speed, double amount){
+    public DriveAmountAndDriveUntilBalancedcopy(Swerve m_Drivetrain, double speed, double amount){
         this.m_Drivetrain = m_Drivetrain;
         this.speed = speed;
         this.pitch = pitch;
         this.amount = amount;
         addRequirements(m_Drivetrain);
-        p = 0.05; //was .05
+        p = 0.05; //RIDE Match 1: 0.04 
     }
 
     @Override
@@ -48,7 +48,7 @@ public class DriveAmountAndDriveUntilBalanced extends CommandBase {
         }
         else{
         m_Drivetrain.autodrive(
-                new Translation2d(speed * p * pitch,  0).times(Constants.Swerve.maxSpeed),
+                new Translation2d(speed * p * -pitch,  0).times(Constants.Swerve.maxSpeed),
                 0 * Constants.Swerve.maxAngularVelocity,
                 false,
                 true);
@@ -71,7 +71,6 @@ public class DriveAmountAndDriveUntilBalanced extends CommandBase {
     public boolean isDocked() {
      if (m_Drivetrain.getAverageEncoderValue() > amount){
         System.out.println("DRIVE AMOUNT DONE");
-        m_Drivetrain.brakeSwerve();
         return true;
       }
     else{

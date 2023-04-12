@@ -130,4 +130,7 @@ public class SwerveModule {
 
     public void setNeutralMode(NeutralMode brake) {
     }
+
+    public void setDriveMode(NeutralMode idleMode) {
+    }
 }

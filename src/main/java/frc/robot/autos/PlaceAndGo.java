@@ -3,6 +3,7 @@ package frc.robot.autos;
 import frc.robot.Constants;
 import frc.robot.Constants.Intake;
 import frc.robot.Constants.Wrist;
+import frc.robot.subsystems.IntakeOneMotor;
 import frc.robot.subsystems.Swerve;
 
 import java.util.List;
@@ -18,12 +19,14 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 
 public class PlaceAndGo extends SequentialCommandGroup {
-    public PlaceAndGo(Swerve s_Swerve, Wrist w_Wrist, Intake i_Intake){
+    public PlaceAndGo(Swerve s_Swerve, Wrist w_Wrist, IntakeOneMotor i_Intake){
         TrajectoryConfig config =
             new TrajectoryConfig(
                     Constants.AutoConstants.kMaxSpeedMetersPerSecond,
@@ -31,7 +34,7 @@ public class PlaceAndGo extends SequentialCommandGroup {
                 .setKinematics(Constants.Swerve.swerveKinematics);
 
         // An example trajectory to follow.  All units in meters.
-        Trajectory exampleTrajectory = PathPlanner.loadPath("New Path", new PathConstraints(4, 3));
+        Trajectory exampleTrajectory = PathPlanner.loadPath("SHOOT and reverse", new PathConstraints(4, 3));
            /*  TrajectoryGenerator.generateTrajectory(
                 // Start at the origin facing the +X direction
                 new Pose2d(0, 0, new Rotation2d(0)),
@@ -59,7 +62,10 @@ public class PlaceAndGo extends SequentialCommandGroup {
 
 
         addCommands(
-            new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose()))
+            new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())).andThen(()-> i_Intake.reverseIntake()), new WaitCommand(5),
+            swerveControllerCommand
+             
+            
         
             
         );

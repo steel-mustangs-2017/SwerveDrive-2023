@@ -42,7 +42,7 @@ public class DriveWithSlow extends CommandBase {
         double rotationVal = MathUtil.applyDeadband(rotationSup.getAsDouble(), Constants.stickDeadband);
 
         /* Drive */
-        m_Drivetrain.drive(
+        m_Drivetrain.autodrive(
                 new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed),
                 rotationVal * Constants.Swerve.maxAngularVelocity,
                 !robotCentricSup.getAsBoolean(),
@@ -54,7 +54,7 @@ public class DriveWithSlow extends CommandBase {
         switch (pov.getPOV()) {
             // up
             case 0:
-                m_Drivetrain.drive(
+                m_Drivetrain.autodrive(
                         new Translation2d(0.15, 0).times(Constants.Swerve.maxSpeed),
                         rotationVal * Constants.Swerve.maxAngularVelocity,
                         !robotCentricSup.getAsBoolean(),
@@ -62,7 +62,7 @@ public class DriveWithSlow extends CommandBase {
                 break;
             // down
             case 180:
-                m_Drivetrain.drive(
+                m_Drivetrain.autodrive(
                         new Translation2d(-0.15, 0).times(Constants.Swerve.maxSpeed),
                         rotationVal * Constants.Swerve.maxAngularVelocity,
                         !robotCentricSup.getAsBoolean(),
@@ -70,7 +70,7 @@ public class DriveWithSlow extends CommandBase {
                 break;
             // left
             case 270:
-                m_Drivetrain.drive(
+                m_Drivetrain.autodrive(
                         new Translation2d(0, 0.1).times(Constants.Swerve.maxSpeed),
                         rotationVal * Constants.Swerve.maxAngularVelocity,
                         !robotCentricSup.getAsBoolean(),
@@ -78,7 +78,7 @@ public class DriveWithSlow extends CommandBase {
                 break;
             // right
             case 90:
-                m_Drivetrain.drive(
+                m_Drivetrain.autodrive(
                         new Translation2d(0, -0.1).times(Constants.Swerve.maxSpeed),
                         rotationVal * Constants.Swerve.maxAngularVelocity,
                         !robotCentricSup.getAsBoolean(),
@@ -86,7 +86,7 @@ public class DriveWithSlow extends CommandBase {
                 break;
             // default
             default:
-                m_Drivetrain.drive(
+                m_Drivetrain.autodrive(
                         new Translation2d(translationVal, strafeVal).times(Constants.Swerve.maxSpeed),
                         rotationVal * Constants.Swerve.maxAngularVelocity,
                         !robotCentricSup.getAsBoolean(),

@@ -59,7 +59,7 @@ public class Swerve extends SubsystemBase {
     }
 }
 
-   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
+   public void autodrive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
 
     SwerveModuleState[] swerveModuleStates = Constants.Swerve.swerveKinematics.toSwerveModuleStates(
             fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
@@ -210,6 +210,16 @@ public class Swerve extends SubsystemBase {
         // 1280 ticks per revolution (2048 ticks per rev x 6.8 Gear Ratio / 2pi x3.5
                       // inches per rev)
     }
+     public void setDrivesMode(NeutralMode idleMode) {
+        SwerveModule module0 = mSwerveMods[0];
+        SwerveModule module1 = mSwerveMods[1];
+        SwerveModule module2 = mSwerveMods[2];
+        SwerveModule module3 = mSwerveMods[3];
+		module0.setDriveMode(idleMode);
+		module1.setDriveMode(idleMode);
+		module2.setDriveMode(idleMode);
+		module3.setDriveMode(idleMode);
+	}
 
     
 
@@ -223,8 +233,19 @@ public class Swerve extends SubsystemBase {
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);    
         }
     }
+    
     //public void drive(Translation2d times, double d, boolean b, boolean c) {
    // }
-	public void drive(Translation2d times, double d, boolean b, boolean asBoolean, boolean c) {
-	}
+   public void drive(Translation2d translation, double rotation, boolean fieldRelative,boolean halfSpeed, boolean isOpenLoop) {
+    SwerveModuleState[] swerveModuleStates =
+        Constants.Swerve.swerveKinematics.toSwerveModuleStates(getButton(translation, rotation, fieldRelative, halfSpeed));
+
+           
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, Constants.Swerve.maxSpeed);
+
+    for(SwerveModule mod : mSwerveMods){
+        mod.setDesiredState(swerveModuleStates[mod.moduleNumber], isOpenLoop);
+    }
+}    
+
 }

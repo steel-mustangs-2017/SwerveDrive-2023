@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj2.command.SwerveControllerCommand;
 
 public class AutonomousMode extends SequentialCommandGroup {
 
-	public AutonomousMode(Swerve s_Swerve, frc.robot.subsystems.Intake i_Intake, Wrist w_Wrist) {
+	public AutonomousMode(Swerve s_Swerve, frc.robot.subsystems.IntakeOneMotor i_Intake, Wrist w_Wrist) {
 		//TODO 1. Check PathConstrains (different than in json file, 2. Why sample is 30 seconds?, 3. Is Balance BLue correct json path?
 		String pathFileName = "Balance BLue";
 		Trajectory exampleTrajectory = PathPlanner.loadPath(pathFileName, new PathConstraints(1, 1.5));
@@ -40,7 +40,11 @@ public class AutonomousMode extends SequentialCommandGroup {
 				//new InstantCommand(() -> i_Intake.reverseIntake()).withTimeout(2),
 				//new InstantCommand(() -> i_Intake.stopIntake()),
 				//new InstantCommand(() -> w_Wrist.wristTop()).withTimeout(3),
+				
 				new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),
-				swerveControllerCommand);
+				
+				swerveControllerCommand
+				
+			);
 	}
 }

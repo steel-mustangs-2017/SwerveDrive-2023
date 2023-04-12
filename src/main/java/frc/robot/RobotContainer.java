@@ -33,14 +33,14 @@ public class RobotContainer {
     private final JoystickButton speedThrottle = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
         
     /*Manipulator Buttons */
-    public final JoystickButton intakeIn = new JoystickButton(manipulator, XboxController.Button.kRightBumper.value);
-    private final JoystickButton intakeOut = new JoystickButton(manipulator, XboxController.Button.kLeftBumper.value);
+    public final JoystickButton intakeIn = new JoystickButton(manipulator, XboxController.Button.kLeftBumper.value);
+    private final JoystickButton intakeOut = new JoystickButton(manipulator, XboxController.Button.kRightBumper.value);
     public final JoystickButton intakeSlow = new JoystickButton(manipulator, XboxController.Button.kA.value);
     //private final JoystickButton elevatorLvl1 = new JoystickButton(manipulator, XboxController.Button.kA.value);
     //private final JoystickButton elevatorLvl2 = new JoystickButton(manipulator, XboxController.Button.kB.value);
     //private final JoystickButton elevatorLvl3 = new JoystickButton(manipulator, XboxController.Button.kX.value);
     private final Swerve s_Swerve = new Swerve();
-    private final Intake i_Intake = new Intake();
+    private final IntakeOneMotor I_Intake = new IntakeOneMotor();
   //  private final Elevator e_Elevator = new Elevator();
     public final Wrist w_Wrist = new Wrist();
    // private final HorizontalElevator h_Elevator = new HorizontalElevator();
@@ -50,7 +50,7 @@ public class RobotContainer {
 
     /*robot subsystems */
    // private final ElevatorCommand elevatorCommand = new ElevatorCommand(e_Elevator, h_Elevator, manipulator, manipulator);
-    private final WristCommand wristCommand = new WristCommand(w_Wrist, manipulator);
+    private final WristCommand wristCommand = new WristCommand(w_Wrist, manipulator,I_Intake);
   //  private final WristCommandAuto wristCommandAuto = new WristCommandAuto(w_Wrist, manipulator);
     //private final HorizantalElevatorCommand horizantalElevatorCommand = new HorizantalElevatorCommand(h_Elevator, manipulator);
     /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -84,12 +84,12 @@ public class RobotContainer {
         zeroGyro.onTrue(new InstantCommand(() -> s_Swerve.zeroGyro()));
 
         /* Manipulator Butoons */
-        intakeIn.onTrue(new InstantCommand(() -> i_Intake.runIntake()));
-        intakeOut.onTrue(new InstantCommand(() -> i_Intake.reverseIntake()));
-        intakeIn.onFalse(new InstantCommand(() -> i_Intake.stopIntake()));
-        intakeOut.onFalse(new InstantCommand(() -> i_Intake.stopIntake()));
-        intakeSlow.onTrue(new InstantCommand(() ->i_Intake.slowReverseIntake()));
-        intakeSlow.onFalse(new InstantCommand(() -> i_Intake.stopIntake()));
+        intakeIn.onTrue(new InstantCommand(() -> I_Intake.runIntake()));
+        intakeOut.onTrue(new InstantCommand(() -> I_Intake.reverseIntake()));
+        intakeIn.onFalse(new InstantCommand(() -> I_Intake.stopIntake()));
+        intakeOut.onFalse(new InstantCommand(() -> I_Intake.stopIntake()));
+        intakeSlow.onTrue(new InstantCommand(() ->I_Intake.slowReverseIntake()));
+        intakeSlow.onFalse(new InstantCommand(() -> I_Intake.stopIntake()));
     }
     private void configureDefaultCommands(){
        // e_Elevator.setDefaultCommand(elevatorCommand);
@@ -98,7 +98,7 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommandDefault() {
-        return new AutonomousMode(s_Swerve, i_Intake , w_Wrist);
+        return new AutonomousMode(s_Swerve, I_Intake , w_Wrist);
     }
     
     public Command getAutonomousCommandBalance() {
@@ -108,7 +108,7 @@ public class RobotContainer {
     
     public Command getAutonomousCommandDeliverAndBalanceSimple() {
         //TODO implement AutonomousModeDeliverAndBalanceSimple
-    	return null;
+    	return new PlaceAndGo(s_Swerve, null, I_Intake);
     }
     
     public Command getAutonomousCommandDeliverAndBalanceAdvanced() {

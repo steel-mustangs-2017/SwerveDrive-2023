@@ -40,17 +40,18 @@ public class DriveAmount extends CommandBase {
             m_Drivetrain.drive(new Translation2d(0, 0.25), 0, false, true);
         }
         */
-        m_Drivetrain.drive(
+        m_Drivetrain.autodrive(
                 new Translation2d(speed, 0).times(Constants.Swerve.maxSpeed),
                 0 * Constants.Swerve.maxAngularVelocity,
-                false,
-                true);
+                true,
+                false);
+        
     }
     
     @Override
     public void end(boolean interrupted) {
         System.out.println("ended");
-        m_Drivetrain.drive(new Translation2d(0, 0), 0, false, false);
+        m_Drivetrain.autodrive(new Translation2d(0, 0), 0, false, false);
     }
 
     @Override

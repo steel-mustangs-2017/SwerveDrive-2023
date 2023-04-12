@@ -33,7 +33,7 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		autonomousSelector.setDefaultOption("Default autonomous", "Default");
 		autonomousSelector.addOption("BALANCE AND GRIDDY", "ADSHDHH");
-		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceSimple");
+		autonomousSelector.addOption("Shoot & reverse", "ShootReverse");
 		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceAdvanced");
 		autonomousSelector.addOption("Only Deliver", "OnlyDeliver");
 		SmartDashboard.putData(autonomousSelector);
@@ -82,7 +82,7 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandBalance();
 		} else if(autonomousOption.equalsIgnoreCase("driveANDBALLANCE")) {
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceSimple();
-		} else if(autonomousOption.equalsIgnoreCase("DeliverAndBalanceAdvanced")) {
+		} else if(autonomousOption.equalsIgnoreCase("ShootReverse")) {
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceAdvanced();
 		} else if(autonomousOption.equalsIgnoreCase("OnlyDeliver")) {
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandOnlyDeliver();
