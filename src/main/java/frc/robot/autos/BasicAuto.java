@@ -11,6 +11,14 @@
 // ROBOTBUILDER TYPE: SequentialCommandGroup.
 
 package frc.robot.autos;
+import com.pathplanner.lib.PathConstraints;
+import com.pathplanner.lib.PathPlanner;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.trajectory.Trajectory;
+import edu.wpi.first.math.trajectory.TrajectoryConfig;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import frc.robot.commands.DriveTrainCommands.DriveAmount;
@@ -28,6 +36,7 @@ import frc.robot.commands.DriveTrainCommands.DriveUntilBalanced;
 //import frc.robot.subsystems.intake;
 //import frc.robot.subsystems.arm;
 import frc.robot.subsystems.Swerve;
+import frc.robot.Constants;
 import frc.robot.commands.autoBalance;
 
 //import frc.robot.subsystems.wrist;
@@ -38,18 +47,27 @@ import frc.robot.commands.autoBalance;
  */
 public class BasicAuto extends SequentialCommandGroup {
 
+    
   
 
     public BasicAuto(Swerve s_Swerve){
+        TrajectoryConfig config =
+        new TrajectoryConfig(
+                Constants.AutoConstants.kMaxSpeedMetersPerSecond,
+                Constants.AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+            .setKinematics(Constants.Swerve.swerveKinematics);
 
-    addCommands(
+            Trajectory exampleTrajectory = PathPlanner.loadPath("Balance Blue", new PathConstraints(0, 0)); 
+            addCommands(
+       // new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),
+            
         
         //new ScoreHighCubePose(intake, wrist, arm, elevator),
         //new IntakeMotorGo(intake, -0.2).withTimeout(.3),
         //new HomePose(elevator, intake, wrist, arm),
         //new ClimbPoseBack(elevator, intake, wrist, arm),
         //new DriveAmount(drivetrain,79,-.2, true),//reduced from 89//increased from 81
-        new DriveAmountAndDriveUntilBalanced(s_Swerve, 1,83 )
+        new DriveAmountAndDriveUntilBalanced(s_Swerve, .2,83 )
        // new CollectFloorPoseBack(elevator, intake, wrist, arm, leds)
       
        // new Balance(drivetrain)

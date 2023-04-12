@@ -9,6 +9,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.sensors.Pigeon2;
 import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
@@ -58,7 +59,7 @@ public class Swerve extends SubsystemBase {
     }
 }
 
-   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop, boolean b) {
+   public void drive(Translation2d translation, double rotation, boolean fieldRelative, boolean isOpenLoop) {
 
     SwerveModuleState[] swerveModuleStates = Constants.Swerve.swerveKinematics.toSwerveModuleStates(
             fieldRelative ? ChassisSpeeds.fromFieldRelativeSpeeds(
@@ -112,6 +113,16 @@ public class Swerve extends SubsystemBase {
 
     public void zeroGyro(){
         gyro.setYaw(0);
+    }
+    public void brakeSwerve(){
+        SwerveModule module0 = mSwerveMods[0];
+        SwerveModule module1 = mSwerveMods[1];
+        SwerveModule module2 = mSwerveMods[2];
+        SwerveModule module3 = mSwerveMods[3];
+        module0.setNeutralMode(NeutralMode.Brake);
+        module1.setNeutralMode(NeutralMode.Brake);
+        module2.setNeutralMode(NeutralMode.Brake);
+        module3.setNeutralMode(NeutralMode.Brake);  
     }
     public void speedThrottle(boolean  hiLow){
         if(hiLow == true){
@@ -212,6 +223,8 @@ public class Swerve extends SubsystemBase {
             SmartDashboard.putNumber("Mod " + mod.moduleNumber + " Velocity", mod.getState().speedMetersPerSecond);    
         }
     }
-    public void drive(Translation2d times, double d, boolean b, boolean c) {
-    }
+    //public void drive(Translation2d times, double d, boolean b, boolean c) {
+   // }
+	public void drive(Translation2d times, double d, boolean b, boolean asBoolean, boolean c) {
+	}
 }
