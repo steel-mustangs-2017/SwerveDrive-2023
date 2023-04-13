@@ -13,32 +13,11 @@
 package frc.robot.autos;
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
-
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.DriveTrainCommands.AutoBalanceDrake;
-import frc.robot.commands.DriveTrainCommands.DriveAmount;
-import frc.robot.commands.DriveTrainCommands.DriveAmountAndDriveUntilBalanced;
-import frc.robot.commands.DriveTrainCommands.DriveUntilBalanced;
-import frc.robot.commands.DriveTrainCommands.autoBalanceFortnite;
-//import frc.robot.commands.DrivetrainCommands.StrafeAmount;
-//import frc.robot.commands.IntakeCommands.IntakeCube;
-//import frc.robot.commands.IntakeCommands.IntakeMotorGo;
-//import frc.robot.commands.SmartCommands.ClimbPoseBack;
-//import frc.robot.commands.SmartCommands.CollectFloorPoseBack;
-//import frc.robot.commands.SmartCommands.DriveAmountUntilBalancedAndArmClimbParallel;
-//import frc.robot.commands.SmartCommands.HomePose;
-//import frc.robot.commands.SmartCommands.Scores.ScoreHighCubePose;
-//import frc.robot.subsystems.elevator;
-//import frc.robot.subsystems.intake;
-//import frc.robot.subsystems.arm;
 import frc.robot.subsystems.Swerve;
 import frc.robot.Constants;
-import frc.robot.commands.autoBalance;
 
 //import frc.robot.subsystems.wrist;
 //import frc.robot.subsystems.leds;

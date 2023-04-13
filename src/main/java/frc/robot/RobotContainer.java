@@ -96,28 +96,11 @@ public class RobotContainer {
         w_Wrist.setDefaultCommand(wristCommand);
       //  h_Elevator.setDefaultCommand(elevatorCommand);
     }
-
-    public Command getAutonomousCommandDefault() {
+    public Command getAutonomousCommand() {
+        // An ExampleCommand will run in autonomous
         return new BasicAuto(s_Swerve);
-    }
+        
+      }
+
     
-    public Command getAutonomousCommandBalance() {
-        //TODO implement AutonomousModeDeliverAndCrossLine
-    	return new BasicAuto(s_Swerve);
-    }
-    
-    public Command getAutonomousCommandDeliverAndBalanceSimple() {
-        //TODO implement AutonomousModeDeliverAndBalanceSimple
-    	return new BasicAuto(s_Swerve);
-    }
-    
-    public Command getAutonomousCommandDeliverAndBalanceAdvanced() {
-        //TODO implement AutonomousModeDeliverAndBalanceAdvanced
-    	return new BasicAuto(s_Swerve);
-    }
-    
-    public Command getAutonomousCommandOnlyDeliver() {
-        //TODO implement AutonomousModeOnlyDeliver
-    	return new BasicAuto(s_Swerve);
-    }
 }

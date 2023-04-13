@@ -22,7 +22,7 @@ public class AutonomousMode extends SequentialCommandGroup {
 		String pathFileName = "Balance BLue";
 		Trajectory exampleTrajectory = PathPlanner.loadPath(pathFileName, new PathConstraints(1, 1.5));
 		PathPlannerState exampleState = (PathPlannerState) exampleTrajectory.sample(30);
-		System.out.println(exampleState.velocityMetersPerSecond);
+		//System.out.println(exampleState.velocityMetersPerSecond);
 		
 		var thetaController = new ProfiledPIDController(Constants.AutoConstants.kPThetaController, 0, 0,
 				Constants.AutoConstants.kThetaControllerConstraints);

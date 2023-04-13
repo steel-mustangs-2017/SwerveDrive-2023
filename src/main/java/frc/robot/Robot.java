@@ -73,30 +73,13 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
 	@Override
 	public void autonomousInit() {
-		
-		String autonomousOption = this.autonomousSelector.getSelected();
-		if(autonomousOption.equalsIgnoreCase("Default")) {
-			//TODO add actual default, best suited for Houston, TX event
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandDefault();
-		} else if(autonomousOption.equalsIgnoreCase("ADSHDHH")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandBalance();
-		} else if(autonomousOption.equalsIgnoreCase("driveANDBALLANCE")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceSimple();
-		} else if(autonomousOption.equalsIgnoreCase("ShootReverse")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceAdvanced();
-		} else if(autonomousOption.equalsIgnoreCase("OnlyDeliver")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandOnlyDeliver();
-		}
-		
 
-		
-		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.schedule();
-			//TODO what is w_Wrist.auto = true needed?
 			m_robotContainer.w_Wrist.auto = true;
+		  }
 		}
-	}
+	
 
   /** This function is called periodically during autonomous. */
   @Override
