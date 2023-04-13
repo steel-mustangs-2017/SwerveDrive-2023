@@ -57,7 +57,7 @@ public class DriveAmount extends CommandBase {
     @Override
     public boolean isFinished() {
      if (m_Drivetrain.getAverageEncoderValue() > amount){
-        System.out.println("DRIVE AMOUNT DONE");
+        System.out.println("\n DRIVE AMOUNT DONE" + amount);
         return true;
       }
     else{

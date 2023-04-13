@@ -45,9 +45,9 @@ public class Wrist extends SubsystemBase {
 		if (auto == false) {
 			double speed = 0;
 			if (POV == -180) {
-				speed = .2; // Down
+				speed = .4; // Down
 			} else if (POV == 0) {
-				speed = -0.2; // Up
+				speed = -0.4; // Up
 			} else {
 				speed = 0;
 			}
@@ -104,11 +104,11 @@ public class Wrist extends SubsystemBase {
 	}
 
 	public void wristTop() {
-		autospeed = -.2;
+		autospeed = -.4;
 	}
 
 	public void wristDown() {
-		autospeed = .2;
+		autospeed = .4;
 	}
 
 }

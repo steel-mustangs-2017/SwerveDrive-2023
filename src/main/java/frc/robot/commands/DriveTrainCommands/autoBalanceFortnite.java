@@ -64,7 +64,7 @@ public class autoBalanceFortnite extends CommandBase {
 
     public boolean isDocked(){
         if (m_Swerve.getAverageEncoderValue() > amount){
-            System.out.println("DRIVE AMOUNT DONE");
+            System.out.println("\n Balanced");
             m_Swerve.brakeSwerve();
             return true;
           }
