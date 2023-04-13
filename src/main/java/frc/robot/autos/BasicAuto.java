@@ -67,9 +67,9 @@ public class BasicAuto extends SequentialCommandGroup {
         //new IntakeMotorGo(intake, -0.2).withTimeout(.3),
         //new HomePose(elevator, intake, wrist, arm),
         //new ClimbPoseBack(elevator, intake, wrist, arm),
-        new DriveAmount(s_Swerve,45,.2, false),
+       // new DriveAmount(s_Swerve,45,.2, false),
         ///new autoBalanceFortnite(s_Swerve,),
-        new autoBalanceFortnite(s_Swerve, .2,60)
+       new Balance(s_Swerve)
        // new CollectFloorPoseBack(elevator, intake, wrist, arm, leds)
       
        // new Balance(drivetrain)

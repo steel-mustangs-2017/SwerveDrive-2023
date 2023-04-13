@@ -98,7 +98,7 @@ public class RobotContainer {
     }
 
     public Command getAutonomousCommandDefault() {
-        return new AutonomousMode(s_Swerve, I_Intake , w_Wrist);
+        return new BasicAuto(s_Swerve);
     }
     
     public Command getAutonomousCommandBalance() {
@@ -108,16 +108,16 @@ public class RobotContainer {
     
     public Command getAutonomousCommandDeliverAndBalanceSimple() {
         //TODO implement AutonomousModeDeliverAndBalanceSimple
-    	return new PlaceAndGo(s_Swerve, null, I_Intake);
+    	return new BasicAuto(s_Swerve);
     }
     
     public Command getAutonomousCommandDeliverAndBalanceAdvanced() {
         //TODO implement AutonomousModeDeliverAndBalanceAdvanced
-    	return null;
+    	return new BasicAuto(s_Swerve);
     }
     
     public Command getAutonomousCommandOnlyDeliver() {
         //TODO implement AutonomousModeOnlyDeliver
-    	return null;
+    	return new BasicAuto(s_Swerve);
     }
 }
