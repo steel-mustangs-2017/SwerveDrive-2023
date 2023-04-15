@@ -151,7 +151,7 @@ public class Swerve extends SubsystemBase {
         }
     }
     public double getPitch() {
-        return gyro.getRoll();//pigeon orientation
+        return gyro.getPitch();//pigeon orientation
     }
 
     public ChassisSpeeds getButton(Translation2d translation, double rotation, boolean fieldRelative,boolean halfSpeed){

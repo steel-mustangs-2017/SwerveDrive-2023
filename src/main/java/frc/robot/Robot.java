@@ -23,7 +23,7 @@ public class Robot extends TimedRobot {
   public static CTREConfigs ctreConfigs;
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-  private final SendableChooser<String> autonomousSelector = new SendableChooser<>();
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,12 +31,7 @@ public class Robot extends TimedRobot {
    */
 	@Override
 	public void robotInit() {
-		autonomousSelector.setDefaultOption("Default autonomous", "Default");
-		autonomousSelector.addOption("BALANCE AND GRIDDY", "ADSHDHH");
-		autonomousSelector.addOption("Shoot & reverse", "ShootReverse");
-		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceAdvanced");
-		autonomousSelector.addOption("Only Deliver", "OnlyDeliver");
-		SmartDashboard.putData(autonomousSelector);
+	
 		
 		ctreConfigs = new CTREConfigs();
 		// Instantiate our RobotContainer. This will perform all our button bindings,
@@ -73,7 +68,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
 	@Override
 	public void autonomousInit() {
-
+		m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.schedule();
 			m_robotContainer.w_Wrist.auto = true;

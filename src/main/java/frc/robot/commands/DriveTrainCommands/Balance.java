@@ -16,7 +16,8 @@ public class Balance extends CommandBase {
         private double pitch;
         private double speed;
         private double threshold = 5;
-        private double distance = 10;
+        private double amount = 0;
+        private double distance = 1;
 
  
    
@@ -35,6 +36,8 @@ public class Balance extends CommandBase {
     
     @Override
     public void initialize() {
+        m_drivetrain.resetEncoders();
+        new DriveAmount(m_drivetrain, 0, 0, true);
         System.err.println("\n WORK OR ILL DIE  ");
     }
 
@@ -43,20 +46,26 @@ public class Balance extends CommandBase {
     public void execute() {
         pitch = m_drivetrain.getPitch();
         System.err.println("\n IF YOU DONT WORK IM GONNA DO BAD THINGS");
-        System.err.println("\n PITCH -------" + pitch);
-        for(int i = 0; i<3; i++){
-            if(pitch < 0){
-                new DriveAmount(m_drivetrain, distance, speed, true);
+        System.err.println("\n PITCH _________________" + pitch);
+            if(pitch < 0 && pitch >-.05){
+                m_drivetrain.autodrive(new Translation2d(0, 0), 0, false, false);
+                m_drivetrain.brakeSwerve();
+                System.err.println("\n this is my last straw");
             }
+            else if(pitch < -1 ){
+                System.err.print("\n \nHIHJIAOH duigwuGD7gwaugfdd WEENRO");
+                m_drivetrain.autodrive(new Translation2d(distance, 0), 0, false, false);
         }
     }
 
     @Override
     public void end(boolean interrupted) {
+
     }
 
     @Override
     public boolean isFinished() {
+        System.err.println("\n FINISHHIEHSIDN ");
         return false;
     }
 

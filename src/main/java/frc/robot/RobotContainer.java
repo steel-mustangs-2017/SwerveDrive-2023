@@ -98,7 +98,7 @@ public class RobotContainer {
     }
     public Command getAutonomousCommand() {
         // An ExampleCommand will run in autonomous
-        return new BasicAuto(s_Swerve);
+        return new PlaceAndGo(s_Swerve,null, I_Intake);
         
       }
 
