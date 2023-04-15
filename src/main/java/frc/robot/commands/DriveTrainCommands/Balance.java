@@ -14,7 +14,7 @@ public class Balance extends CommandBase {
 
         private final Swerve m_drivetrain;
         private double pitch;
-        private double speed;
+        private double speed = 0.15;
         private double threshold = 5;
         private double amount = 0;
         private double distance = 1;
@@ -54,7 +54,7 @@ public class Balance extends CommandBase {
             }
             else if(pitch < -1 ){
                 System.err.print("\n \nHIHJIAOH duigwuGD7gwaugfdd WEENRO");
-                m_drivetrain.autodrive(new Translation2d(distance, 0), 0, false, false);
+                m_drivetrain.autodrive(new Translation2d(distance, speed), 0, false, false);
         }
     }
 

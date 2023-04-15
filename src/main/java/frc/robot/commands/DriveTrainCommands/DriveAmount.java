@@ -51,7 +51,7 @@ public class DriveAmount extends CommandBase {
     @Override
     public void end(boolean interrupted) {
         System.out.println("ended");
-     //   m_Drivetrain.autodrive(new Translation2d(0, 0), 0, false, false);
+        m_Drivetrain.autodrive(new Translation2d(0, 0), 0, false, false);
     }
 
     @Override

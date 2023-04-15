@@ -64,9 +64,9 @@ public class PlaceAndGo extends SequentialCommandGroup {
 
 
         addCommands(
-            //new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),            
+            new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),            
             new InstantCommand(()-> i_Intake.runIntake()), new WaitCommand(1).andThen(()-> i_Intake.stopIntake()),
-            new DriveAmount(s_Swerve,150,-.2, false)
+            new DriveAmount(s_Swerve,130 ,-.2, false)
         
              
             
