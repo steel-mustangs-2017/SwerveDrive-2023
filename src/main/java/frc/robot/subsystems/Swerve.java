@@ -127,16 +127,16 @@ public class Swerve extends SubsystemBase {
     public void speedThrottle(boolean  hiLow){
         if(hiLow == true){
             Constants.Swerve.maxSpeed = Constants.Swerve.maxSpeed/2;
-            System.out.println("Max Speed; " + Constants.Swerve.maxSpeed); 
+           // System.out.println("Max Speed; " + Constants.Swerve.maxSpeed); 
             Constants.Swerve.maxAngularVelocity = Constants.Swerve.maxAngularVelocity/2;
-            System.out.println("Max Spin;" + Constants.Swerve.maxAngularVelocity);
+           // System.out.println("Max Spin;" + Constants.Swerve.maxAngularVelocity);
             
         }
         else{
             Constants.Swerve.maxSpeed = Constants.Swerve.maxSpeed*2;
             Constants.Swerve.maxAngularVelocity = Constants.Swerve.maxAngularVelocity*2; 
-            System.out.println("Max Speed; " + Constants.Swerve.maxSpeed);
-            System.out.println("Max Spin;" + Constants.Swerve.maxAngularVelocity);    
+           // System.out.println("Max Speed; " + Constants.Swerve.maxSpeed);
+           // System.out.println("Max Spin;" + Constants.Swerve.maxAngularVelocity);    
         }
         
     }
