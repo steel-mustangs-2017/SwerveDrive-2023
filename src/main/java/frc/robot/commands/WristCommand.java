@@ -29,12 +29,12 @@ public class WristCommand extends CommandBase {
 	public void execute() {
 		// System.err.println("********************* get_state= " + Wrist.getState());
 		
-		if(WristController.getRawButton(3)){
+		/*if(WristController.getRawButton(3)){
 			Wrist.wristTop();
 		} 
 		else if(WristController.getRawButton(4) && Wrist.getState() == 2){ 
 			Wrist.wristDown();
-		}
+		}*/
 		 
 		
 		

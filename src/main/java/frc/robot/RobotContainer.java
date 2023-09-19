@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 import frc.robot.autos.*;
 import frc.robot.commands.*;
+import frc.robot.commands.DriveTrainCommands.Balance;
 import frc.robot.subsystems.*;
 
 /**
@@ -36,6 +37,7 @@ public class RobotContainer {
     public final JoystickButton intakeIn = new JoystickButton(manipulator, XboxController.Button.kLeftBumper.value);
     private final JoystickButton intakeOut = new JoystickButton(manipulator, XboxController.Button.kRightBumper.value);
     public final JoystickButton intakeSlow = new JoystickButton(manipulator, XboxController.Button.kA.value);
+    public final JoystickButton SuperSLowIntake = new JoystickButton(manipulator, XboxController.Button.kB.value);
     //private final JoystickButton elevatorLvl1 = new JoystickButton(manipulator, XboxController.Button.kA.value);
     //private final JoystickButton elevatorLvl2 = new JoystickButton(manipulator, XboxController.Button.kB.value);
     //private final JoystickButton elevatorLvl3 = new JoystickButton(manipulator, XboxController.Button.kX.value);
@@ -90,34 +92,23 @@ public class RobotContainer {
         intakeOut.onFalse(new InstantCommand(() -> I_Intake.stopIntake()));
         intakeSlow.onTrue(new InstantCommand(() ->I_Intake.slowReverseIntake()));
         intakeSlow.onFalse(new InstantCommand(() -> I_Intake.stopIntake()));
-    }
+        SuperSLowIntake.onTrue(new InstantCommand(() -> I_Intake.SuperSlowReverseIntake()));
+        SuperSLowIntake.onFalse(new InstantCommand(()->I_Intake.stopIntake()));
+    }   
     private void configureDefaultCommands(){
        // e_Elevator.setDefaultCommand(elevatorCommand);
         w_Wrist.setDefaultCommand(wristCommand);
       //  h_Elevator.setDefaultCommand(elevatorCommand);
     }
-
     public Command getAutonomousCommandDefault() {
-        return new BasicAuto(s_Swerve);
+    	return new PlaceAndGo(s_Swerve, null, I_Intake);
     }
     
-    public Command getAutonomousCommandBalance() {
-        //TODO implement AutonomousModeDeliverAndCrossLine
+    public Command getAutoBalance() {        
     	return new BasicAuto(s_Swerve);
     }
-    
-    public Command getAutonomousCommandDeliverAndBalanceSimple() {
-        //TODO implement AutonomousModeDeliverAndBalanceSimple
-    	return new BasicAuto(s_Swerve);
+    public Command getCrankThat(){
+      return new AutonomousMode(s_Swerve, null, I_Intake);
     }
-    
-    public Command getAutonomousCommandDeliverAndBalanceAdvanced() {
-        //TODO implement AutonomousModeDeliverAndBalanceAdvanced
-    	return new BasicAuto(s_Swerve);
-    }
-    
-    public Command getAutonomousCommandOnlyDeliver() {
-        //TODO implement AutonomousModeOnlyDeliver
-    	return new BasicAuto(s_Swerve);
-    }
+
 }

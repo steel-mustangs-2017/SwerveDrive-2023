@@ -24,12 +24,12 @@ public class DriveAmount extends CommandBase {
     @Override
     public void initialize(){
         m_Drivetrain.resetEncoders();
-        System.out.println("DRIVE AMOUNT INIT");
+       // System.out.println("DRIVE AMOUNT INIT");
     }
 
     @Override
     public void execute(){
-        System.out.println("Aligning wheels?");
+        System.out.println("\n AHHHHHHHHHHHH");
         
         System.out.println(m_Drivetrain.getAverageEncoderValue());
         /* 

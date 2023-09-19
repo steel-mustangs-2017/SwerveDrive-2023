@@ -19,11 +19,11 @@ import edu.wpi.first.cameraserver.CameraServer;
  * project.
  */
 public class Robot extends TimedRobot {
- 
-  public static CTREConfigs ctreConfigs;
-  private Command m_autonomousCommand;
-  private RobotContainer m_robotContainer;
-  private final SendableChooser<String> autonomousSelector = new SendableChooser<>();
+	private final SendableChooser<String> autonomousSelector = new SendableChooser<>();
+	public static CTREConfigs ctreConfigs;
+	private Command m_autonomousCommand;
+	private RobotContainer m_robotContainer;
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -31,11 +31,11 @@ public class Robot extends TimedRobot {
    */
 	@Override
 	public void robotInit() {
-		autonomousSelector.setDefaultOption("Default autonomous", "Default");
-		autonomousSelector.addOption("BALANCE AND GRIDDY", "ADSHDHH");
-		autonomousSelector.addOption("Shoot & reverse", "ShootReverse");
-		autonomousSelector.addOption("Deliver & Balance", "DeliverAndBalanceAdvanced");
-		autonomousSelector.addOption("Only Deliver", "OnlyDeliver");
+
+		autonomousSelector.setDefaultOption("Liam smokes Crack(Place & BackUp)", "Default");
+		autonomousSelector.addOption("Balance", "Balance");
+		autonomousSelector.addOption("The Meth head is a munch (SHoot and Balance", "THE GOAT");
+		
 		SmartDashboard.putData(autonomousSelector);
 		
 		ctreConfigs = new CTREConfigs();
@@ -73,30 +73,24 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
 	@Override
 	public void autonomousInit() {
-		
+
 		String autonomousOption = this.autonomousSelector.getSelected();
 		if(autonomousOption.equalsIgnoreCase("Default")) {
-			//TODO add actual default, best suited for Houston, TX event
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandDefault();
-		} else if(autonomousOption.equalsIgnoreCase("ADSHDHH")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandBalance();
-		} else if(autonomousOption.equalsIgnoreCase("driveANDBALLANCE")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceSimple();
-		} else if(autonomousOption.equalsIgnoreCase("ShootReverse")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandDeliverAndBalanceAdvanced();
-		} else if(autonomousOption.equalsIgnoreCase("OnlyDeliver")) {
-			m_autonomousCommand = m_robotContainer.getAutonomousCommandOnlyDeliver();
+		} 
+		else if(autonomousOption.equalsIgnoreCase("Balance")) {
+			m_autonomousCommand = m_robotContainer.getAutoBalance();
+		}
+		else if(autonomousOption.equalsIgnoreCase("THE GOAT")){
+			m_autonomousCommand = m_robotContainer.getCrankThat();
 		}
 		
-
-		
-		// schedule the autonomous command (example)
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.schedule();
-			//TODO what is w_Wrist.auto = true needed?
 			m_robotContainer.w_Wrist.auto = true;
+		  }
 		}
-	}
+	
 
   /** This function is called periodically during autonomous. */
   @Override

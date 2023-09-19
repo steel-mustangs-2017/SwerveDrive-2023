@@ -33,7 +33,10 @@ public void reverseIntake() {
     MainIntake.set(0.35);
 }
 public void slowReverseIntake(){
-    MainIntake.set(-0.35);
+    MainIntake.set(-0.4);
+}
+public void SuperSlowReverseIntake(){
+    MainIntake.set(-0.25);
 }
 
 public void stopIntake(){

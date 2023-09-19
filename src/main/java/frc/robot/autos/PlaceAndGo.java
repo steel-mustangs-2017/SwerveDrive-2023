@@ -3,6 +3,7 @@ package frc.robot.autos;
 import frc.robot.Constants;
 import frc.robot.Constants.Intake;
 import frc.robot.Constants.Wrist;
+import frc.robot.commands.DriveTrainCommands.DriveAmount;
 import frc.robot.subsystems.IntakeOneMotor;
 import frc.robot.subsystems.Swerve;
 
@@ -34,15 +35,16 @@ public class PlaceAndGo extends SequentialCommandGroup {
                 .setKinematics(Constants.Swerve.swerveKinematics);
 
         // An example trajectory to follow.  All units in meters.
-        Trajectory exampleTrajectory = PathPlanner.loadPath("SHOOT and reverse", new PathConstraints(4, 3));
-           /*  TrajectoryGenerator.generateTrajectory(
+        //Trajectory exampleTrajectory = PathPlanner.loadPath("SHOOT and reverse", new PathConstraints(4, 3));
+        Trajectory exampleTrajectory =
+            TrajectoryGenerator.generateTrajectory(
                 // Start at the origin facing the +X direction
                 new Pose2d(0, 0, new Rotation2d(0)),
                 // Pass through these two interior waypoints, making an 's' curve path
                 List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
                 // End 3 meters straight ahead of where we started, facing forward
                 new Pose2d(3, 0, new Rotation2d(0)),
-                config);*/
+                config);
 
         var thetaController =
             new ProfiledPIDController(
@@ -62,8 +64,10 @@ public class PlaceAndGo extends SequentialCommandGroup {
 
 
         addCommands(
-            new InstantCommand(()-> i_Intake.reverseIntake()), new WaitCommand(5).andThen((() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose()))),
-            swerveControllerCommand
+            new InstantCommand(() -> s_Swerve.resetOdometry(exampleTrajectory.getInitialPose())),            
+            new InstantCommand(()-> i_Intake.runIntake()), new WaitCommand(1).andThen(()-> i_Intake.stopIntake()),
+            new DriveAmount(s_Swerve,130 ,-.2, false)
+        
              
             
         
