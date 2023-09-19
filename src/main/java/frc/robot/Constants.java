@@ -166,10 +166,6 @@ public final class Constants {
         public static final int MainIntake = 10;
         //public static final int intakeLeft = 10;
         //public static final int intakeRight = 11;
-
-        public Object intakeOut() {
-            return null;
-        }
     }
     
     public final class Wrist{

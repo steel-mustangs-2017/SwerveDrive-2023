@@ -104,11 +104,11 @@ public class Wrist extends SubsystemBase {
 	}
 
 	public void wristTop() {
-		autospeed = -.4;
+		autospeed = -.35;
 	}
 
 	public void wristDown() {
-		autospeed = .4;
+		autospeed = .35;
 	}
 
 }

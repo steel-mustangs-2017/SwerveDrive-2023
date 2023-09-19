@@ -17,7 +17,7 @@ public class Balance extends CommandBase {
         private double speed = 0.15;
         private double threshold = 5;
         private double amount = 0;
-        private double distance = 1;
+        private double distance = .01;
 
  
    
@@ -45,12 +45,12 @@ public class Balance extends CommandBase {
     @Override
     public void execute() {
         pitch = m_drivetrain.getPitch();
-        System.err.println("\n IF YOU DONT WORK IM GONNA DO BAD THINGS");
-        System.err.println("\n PITCH _________________" + pitch);
+       // System.err.println("\n IF YOU DONT WORK IM GONNA DO BAD THINGS");
+       // System.err.println("\n PITCH _________________" + pitch);
             if(pitch < 0 && pitch >-.05){
                 m_drivetrain.autodrive(new Translation2d(0, 0), 0, false, false);
                 m_drivetrain.brakeSwerve();
-                System.err.println("\n this is my last straw");
+                //System.err.println("\n this is my last straw");
             }
             else if(pitch < -1 ){
                 System.err.print("\n \nHIHJIAOH duigwuGD7gwaugfdd WEENRO");

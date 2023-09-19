@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
 
 		autonomousSelector.setDefaultOption("Liam smokes Crack(Place & BackUp)", "Default");
 		autonomousSelector.addOption("Balance", "Balance");
+		autonomousSelector.addOption("The Meth head is a munch (SHoot and Balance", "THE GOAT");
 		
 		SmartDashboard.putData(autonomousSelector);
 		
@@ -75,11 +76,13 @@ public class Robot extends TimedRobot {
 
 		String autonomousOption = this.autonomousSelector.getSelected();
 		if(autonomousOption.equalsIgnoreCase("Default")) {
-			//TODO add actual default, best suited for Houston, TX event
 			m_autonomousCommand = m_robotContainer.getAutonomousCommandDefault();
 		} 
 		else if(autonomousOption.equalsIgnoreCase("Balance")) {
 			m_autonomousCommand = m_robotContainer.getAutoBalance();
+		}
+		else if(autonomousOption.equalsIgnoreCase("THE GOAT")){
+			m_autonomousCommand = m_robotContainer.getCrankThat();
 		}
 		
 		if (m_autonomousCommand != null) {

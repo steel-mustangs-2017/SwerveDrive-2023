@@ -107,4 +107,8 @@ public class RobotContainer {
     public Command getAutoBalance() {        
     	return new BasicAuto(s_Swerve);
     }
+    public Command getCrankThat(){
+      return new AutonomousMode(s_Swerve, null, I_Intake);
+    }
+
 }
